@@ -30,9 +30,8 @@ exports.handler = (event, context, callback) => {
         .resize(WIDTH, HEIGHT)
         .setFormat('jpeg')
         .toBuffer(function (err, buffer) {
-          if (err) {
-            callback(err)
-          } else {
+          if (err) { callback(err) }
+          else {
             s3.putObject({ Bucket: BUCKET, Body: buffer, Key: `thumbnails/thumbnail-${FILE}` }).promise()
             .then(() => {
               callback(null)
