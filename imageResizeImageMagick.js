@@ -1,6 +1,5 @@
 /*
 Image resize with the ImageMagick library.
-To install sharp for Lambda, follow the installation instructions at https://sharp.pixelplumbing.com/en/stable/install. 
 */
 
 const gm = require('gm').subClass({ imageMagick: true })

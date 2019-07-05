@@ -1,4 +1,7 @@
-// image resize with the sharp library
+/*
+Image resize with the sharp library.
+To install sharp for Lambda, follow the installation instructions at https://sharp.pixelplumbing.com/en/stable/install.
+*/
 
 const sharp = require('sharp')
 const aws = require('aws-sdk')
