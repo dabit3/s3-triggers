@@ -1,8 +1,9 @@
-// image resize with the sharp library
+/*
+Image resize with the ImageMagick library.
+To install sharp for Lambda, follow the installation instructions at https://sharp.pixelplumbing.com/en/stable/install. 
+*/
 
-const gm = require('gm').subClass({
-  imageMagick: true
-})
+const gm = require('gm').subClass({ imageMagick: true })
 const aws = require('aws-sdk')
 const s3 = new aws.S3()
 
@@ -30,16 +31,13 @@ exports.handler = (event, context, callback) => {
         .setFormat('jpeg')
         .toBuffer(function (err, buffer) {
           if (err) {
-            console.log('error storing image: ', err)
+            callback(err)
           } else {
             s3.putObject({ Bucket: BUCKET, Body: buffer, Key: `thumbnails/thumbnail-${FILE}` }).promise()
-            .then(data => {
-              console.log('successfully put object:', data)
+            .then(() => {
               callback(null)
             })
-            .catch(err => {
-              callback(err)
-            })
+            .catch(err => { callback(err) })
           }
         })
     })
