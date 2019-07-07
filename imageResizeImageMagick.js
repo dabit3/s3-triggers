@@ -6,8 +6,7 @@ const gm = require('gm').subClass({ imageMagick: true })
 const aws = require('aws-sdk')
 const s3 = new aws.S3()
 
-// Store Bucket name in environment variable or hard code it here
-const BUCKET = process.env.BUCKET
+const BUCKET = event.Records[0].s3.bucket.name
 const WIDTH = 100
 const HEIGHT = 100
 
