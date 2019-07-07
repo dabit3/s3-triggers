@@ -13,7 +13,7 @@ const HEIGHT = 100
 exports.handler = async (event, context) => {
   const BUCKET = event.Records[0].s3.bucket.name
 
-  // Gets the first record in the event object (the image data we will use)
+  // Get the image data we will use from the first record in the event object
   const KEY = event.Records[0].s3.object.key
   const PARTS = KEY.split('/')
 
