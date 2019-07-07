@@ -7,11 +7,12 @@ const sharp = require('sharp')
 const aws = require('aws-sdk')
 const s3 = new aws.S3()
 
-const BUCKET = event.Records[0].s3.bucket.name
 const WIDTH = 100
 const HEIGHT = 100
 
 exports.handler = async (event, context) => {
+  const BUCKET = event.Records[0].s3.bucket.name
+
   // This gets the first record in the event object (the image data we will use)
   const KEY = event.Records[0].s3.object.key
   const PARTS = KEY.split('/')
