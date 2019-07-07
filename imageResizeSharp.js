@@ -13,15 +13,15 @@ const HEIGHT = 100
 exports.handler = async (event, context) => {
   const BUCKET = event.Records[0].s3.bucket.name
 
-  // This gets the first record in the event object (the image data we will use)
+  // Gets the first record in the event object (the image data we will use)
   const KEY = event.Records[0].s3.object.key
   const PARTS = KEY.split('/')
 
-  // Here we check to see if the base folder is already set to thumbnails, if it is we return so we do not have a recursive call.
+  // Check to see if the base folder is already set to thumbnails, if it is we return so we do not have a recursive call.
   const BASE_FOLDER = PARTS[0]
   if (BASE_FOLDER === 'thumbnails') return
 
-  // This stores the main file name in a variable
+  // Stores the main file name in a variable
   let FILE = PARTS[PARTS.length - 1]
 
   try {
